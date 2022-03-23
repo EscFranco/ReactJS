@@ -1,4 +1,5 @@
-import './NavBar.css';
+import './style.css';
+import CartWidget from './CartWidget'
 
 function NavBar () {
     return (
@@ -10,8 +11,9 @@ function NavBar () {
                 <li><a href="#">Hombres</a></li>
                 <li><a href="#">Mujeres</a></li>
             </ul>
+            <CartWidget />
         </header>
     )
 }
 
-export default NavBar
+export default NavBar;

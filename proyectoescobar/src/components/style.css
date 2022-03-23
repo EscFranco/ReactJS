@@ -20,3 +20,16 @@ a {
     padding: 15px;
     color: green;
 }
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* --------- MAIN -------- */
+
+h2 {
+    text-align: center;
+    font-size: 40px;
+}
