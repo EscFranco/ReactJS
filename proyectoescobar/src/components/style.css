@@ -43,3 +43,10 @@ h2 {
     margin-right: 5px;
     margin-left: 5px;
 }
+
+
+.itemsShop {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
