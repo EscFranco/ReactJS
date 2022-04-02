@@ -50,3 +50,7 @@ h2 {
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+.DetailContainer {
+    text-align: center;
+}
