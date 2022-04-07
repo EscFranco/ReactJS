@@ -1,9 +1,12 @@
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function CartWidget () {
 
     return (
-        <button className="carrito"> <FaShoppingCart /> </button>
+            <Link to="/cart">
+                <FaShoppingCart /> 
+            </Link>
         
     )
 }
