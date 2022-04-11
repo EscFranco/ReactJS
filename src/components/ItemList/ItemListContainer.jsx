@@ -25,15 +25,11 @@ function ItemListContainer({ greeting }) {
             });
     }, [categoryName]);
 
-    function onAdd(cantidad) {
-        console.log(`Has agregado ${cantidad} ${cantidad === 1 ? "producto" : "productos"}`)
-    }
 
     return (
         <main>
             <h2>{greeting}</h2>
             <ItemList items={producto} />
-            <ItemCount stock={10} initial={1} onAdd={onAdd} />
         </main>
     )
 }

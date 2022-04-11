@@ -5,9 +5,7 @@ import ItemDetail from "./ItemDetail";
 function ItemDetailContainer() {
 
     const [producto, setProducto] = useState({});
-    const { id } = useParams()
-
-    
+    const { id } = useParams()    
 
     useEffect (() => {
         fetch("./data/hombres.json")
