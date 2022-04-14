@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ItemCount from "./ItemCount"
 import ItemList from "./ItemList"
 
 function ItemListContainer({ greeting }) {
@@ -9,10 +8,9 @@ function ItemListContainer({ greeting }) {
     const { categoryName } = useParams()
 
     useEffect(() => {
-        fetch("./data/hombres.json")
+        fetch("/data/hombres.json")
             .then((response) => response.json())
             .then((json) => {
-                console.log(json)
                 if (categoryName === undefined) {
                     setProducto([...json]);
                 } else {

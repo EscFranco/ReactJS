@@ -1,12 +1,17 @@
 import ItemCount from "../ItemList/ItemCount"
-
-function onAdd(cantidad) {
-    console.log(`Has agregado ${cantidad} ${cantidad === 1 ? "producto" : "productos"}`)
-}
-
+import { cartContext } from "../Context/CartContext.jsx";
+import { useContext } from "react";
 
 
 const ItemDetail = ({item}) => {
+
+    const { addProduct } = useContext(cartContext);
+
+    const onAdd = (cantidad) => {
+        addProduct(item,cantidad)
+        console.log(`Has agregado ${cantidad} ${cantidad === 1 ? "producto" : "productos"}`)
+    }
+    
 
     return (
         <div id={item.id}>
@@ -25,6 +30,5 @@ const ItemDetail = ({item}) => {
     )
 
 }
-
 
 export default ItemDetail;

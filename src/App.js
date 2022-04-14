@@ -8,20 +8,23 @@ import ItemListContainer from "./components/ItemList/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetail/ItemDetailContainer";
 import Carrito from "./components/Cart/Carrito";
 import PaginaError from "./components/PaginaError";
+import CustomProvider from './components/Context/CartContext';
 
 
 
 function App() {
   return (
     <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<ItemListContainer />} />
-        <Route path="/:categoryName" element={<ItemListContainer />} />
-        <Route path="/item/:id" element={<ItemDetailContainer />} />
-        <Route path="/cart" element={<Carrito />} />
-        <Route path="*" element={<PaginaError />} />
-      </Routes>
+      <CustomProvider>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<ItemListContainer />} />
+          <Route path="/:categoryName" element={<ItemListContainer />} />
+          <Route path="/item/:id" element={<ItemDetailContainer />} />
+          <Route path="/cart" element={<Carrito />} />
+          <Route path="*" element={<PaginaError />} />
+        </Routes>
+      </CustomProvider>
     </BrowserRouter>
   );
 }

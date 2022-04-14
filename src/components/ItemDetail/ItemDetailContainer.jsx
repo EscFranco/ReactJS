@@ -8,13 +8,10 @@ function ItemDetailContainer() {
     const { id } = useParams()    
 
     useEffect (() => {
-        fetch("./data/hombres.json")
+        fetch("/data/hombres.json")
         .then((response) => response.json())
         .then((json) => {
-            console.log (json)
             const filterArray = json.filter((product) => {
-                console.log(product.id)
-                console.log(id)
                 return product.id === id
             })
             setProducto(filterArray[0])
