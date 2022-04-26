@@ -26,7 +26,6 @@ const Carrito = () => {
 					<button onClick={clearCart}>Vaciar Carrito</button>
 					<button>Terminar compra</button>
 				</div>
-
 			) : (
 				<div>
 					<h1> Su carrito esta vacio</h1>

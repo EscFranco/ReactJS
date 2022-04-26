@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { doc, getDoc, collection } from "firebase/firestore";
+import { db } from "../Firebase/firebase"
 import ItemDetail from "./ItemDetail";
 
 function ItemDetailContainer() {
@@ -8,14 +10,19 @@ function ItemDetailContainer() {
     const { id } = useParams()    
 
     useEffect (() => {
-        fetch("/data/hombres.json")
-        .then((response) => response.json())
-        .then((json) => {
-            const filterArray = json.filter((product) => {
-                return product.id === id
+
+        const productsCollection = collection(db, "productos");
+        const refDoc = doc(productsCollection, id);
+        getDoc(refDoc)
+            .then((result) => {
+                const id = result.id;
+                const item = { id, ...result.data() };
+                setProducto(item);
             })
-            setProducto(filterArray[0])
-        });
+            .catch((error) => {
+                console.log(error);
+            });
+
 }, [id]);
 
     return (

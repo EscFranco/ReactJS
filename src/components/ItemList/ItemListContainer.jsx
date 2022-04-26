@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { getDocs, collection, query, where } from "firebase/firestore";
 import ItemList from "./ItemList"
+import { db } from "../Firebase/firebase"
 
 function ItemListContainer({ greeting }) {
 
@@ -8,19 +10,26 @@ function ItemListContainer({ greeting }) {
     const { categoryName } = useParams()
 
     useEffect(() => {
-        fetch("/data/hombres.json")
-            .then((response) => response.json())
-            .then((json) => {
-                if (categoryName === undefined) {
-                    setProducto([...json]);
-                } else {
-                    setProducto(
-                        json.filter((product) => {
-                            return product.categoria === categoryName;
-                        })
-                    );
-                }
-            });
+
+        const productosCollec = collection(db, "productos")
+        const q = query(
+            productosCollec,
+            where("categoria", "==", `${categoryName}`)
+        );
+        getDocs(categoryName ? q : productosCollec)
+        .then((result) => {
+            const docs = result.docs;
+            const prodList = docs.map(produc => {
+                const id = produc.id
+                const product = { id, ...produc.data()}
+                return product
+            })
+            setProducto(prodList)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
     }, [categoryName]);
 
 
