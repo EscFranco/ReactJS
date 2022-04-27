@@ -1,10 +1,32 @@
+import { useContext, useEffect, useState } from "react";
+import { addDoc, collection, serverTimestamp, updateDoc, doc, getDoc} from "firebase/firestore"
+import { db } from "../Firebase/firebase"
 import { cartContext } from "../Context/CartContext.jsx";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 const Carrito = () => {
 
 	const { clearCart, carrito, delProduct, totalCarrito } = useContext(cartContext);
+	
+	const [ ticket, setTicket ] = useState("");
+	const comprador = {
+		name: "Miguel",
+		lastname: "Gomez",
+		mail: "miguelcito@gmail.com"
+	}
+
+	const finalizarCompra = () => {
+		const ventaCollec = collection(db, "ventas");
+		addDoc(ventaCollec, {
+			cliente: comprador,
+			items: carrito,
+			date: serverTimestamp(),
+			total: totalCarrito
+		})
+		.then((result) => {
+			setTicket(result.id);
+		})
+	}
 
 	return (
 		<>
@@ -24,7 +46,11 @@ const Carrito = () => {
 					})}
 					<p>TOTAL: ${totalCarrito}</p>
 					<button onClick={clearCart}>Vaciar Carrito</button>
-					<button>Terminar compra</button>
+					<button onClick={finalizarCompra}>Terminar compra</button>
+					{ticket ? 
+					<p>Gracias por su compra, este es el ID de su compra {ticket} </p> 
+					:
+					<></>}
 				</div>
 			) : (
 				<div>
