@@ -1,4 +1,4 @@
-import { FaShoppingCart } from "react-icons/fa";
+import { ShoppingCartIcon } from '@heroicons/react/solid'
 import { Link } from "react-router-dom";
 import { useContext} from "react"
 import { cartContext } from "../Context/CartContext.jsx";
@@ -9,9 +9,9 @@ function CartWidget () {
 
 
     return (
-        <div>
+        <div className='flex flex-col items-center'>
             <Link to="/cart">
-                <FaShoppingCart />
+                <ShoppingCartIcon className="h-5 w-5" />
             </Link>
             <p>{getProductQty}</p>
         </div>
@@ -19,3 +19,4 @@ function CartWidget () {
 }
 
 export default CartWidget;
+

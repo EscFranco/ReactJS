@@ -33,6 +33,13 @@ const CustomProvider = ({children}) => {
         }
     };
 
+    const getProductStock = (id) => {
+        if (isInCart(id)) {
+            const product = carrito.find((element) => element.id === id);
+            return product.stock - product.cantidad;
+        }
+    };
+
     const getProductQty = carrito.reduce((accumulator, element) => {
         return accumulator + element.cantidad;
     }, 0);
@@ -46,7 +53,7 @@ const CustomProvider = ({children}) => {
     }, 0);
 
     return (
-        <Provider value={{ carrito, totalCarrito, addProduct, delProduct, getProductQty, clearCart }} >
+        <Provider value={{ carrito, totalCarrito, addProduct, delProduct, getProductQty, clearCart, getProductStock }} >
             {children}
         </Provider>
     )
